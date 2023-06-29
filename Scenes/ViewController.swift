@@ -19,6 +19,13 @@ class ViewController: UIViewController {
         setUpMyFirstQuizView()
         setUpTypingView()
         setUpStartQuizButtonView()
+        keyboardDismiss()
+    }
+    
+    //MARK: - KeyBoard
+    private func keyboardDismiss() {
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+         view.addGestureRecognizer(tapGesture)
     }
     
     //MARK: - Methods
