@@ -30,60 +30,41 @@ class MyFirstQuizView: UIView {
         setUpMyFirstQuizLabel()
         setUpMainIllustrationItemView()
     }
-    
+
     private func setUpBlueBackgroundItemView() {
         addSubview(blueBackgroundItemView)
-        blueBackgroundItemView.stretchOnParent()
         blueBackgroundItemView.image = Constants.Image.blueBackground
-        
-//        blueBackgroundItemView.setHeight(Constants.BlueBackgroundItemView.height)
-//        blueBackgroundItemView.setWidth(Constants.BlueBackgroundItemView.width)
         blueBackgroundItemView.translatesAutoresizingMaskIntoConstraints = false
+        blueBackgroundItemView.stretchOnParent()
     }
-    
+
     private func setUpMainIllustrationItemView() {
         blueBackgroundItemView.addSubview(mainIllustrationItemView)
         mainIllustrationItemView.image = Constants.Image.mainIllustration
-        
-//        mainIllustrationItemView.setHeight(Constants.MainIllustrationItemView.height)
-//        mainIllustrationItemView.setWidth(Constants.MainIllustrationItemView.width)
-        mainIllustrationItemView.centre(in: blueBackgroundItemView)
         mainIllustrationItemView.translatesAutoresizingMaskIntoConstraints = false
 
         
         NSLayoutConstraint.activate([
-            mainIllustrationItemView.topAnchor.constraint(
-                equalTo: myFirstQuizLabel.bottomAnchor,
-                constant: Constants.MainIllustrationItemView.topPadding
-            ),
-//            mainIllustrationItemView.bottomAnchor.constraint(
-//                equalTo: blueBackgroundItemView.bottomAnchor,
-//                constant: -Constants.MainIllustrationItemView.bottomPadding
-//            )
+            mainIllustrationItemView.topAnchor.constraint(equalTo: myFirstQuizLabel.bottomAnchor, constant: Constants.MainIllustrationItemView.topPadding),
+            mainIllustrationItemView.centerXAnchor.constraint(equalTo: blueBackgroundItemView.centerXAnchor),
+
+            mainIllustrationItemView.bottomAnchor.constraint(equalTo: blueBackgroundItemView.bottomAnchor, constant: -Constants.MainIllustrationItemView.bottomPadding),
+            mainIllustrationItemView.heightAnchor.constraint(equalTo: blueBackgroundItemView.heightAnchor, multiplier: Constants.MainIllustrationItemView.heightMultiplier),
+            mainIllustrationItemView.widthAnchor.constraint(equalTo: mainIllustrationItemView.heightAnchor, multiplier: Constants.MainIllustrationItemView.aspectRatio)
+
         ])
     }
-    
+
     private func setUpMyFirstQuizLabel() {
         blueBackgroundItemView.addSubview(myFirstQuizLabel)
         myFirstQuizLabel.text = Constants.MyFirstQuizLabel.text
         myFirstQuizLabel.textColor = Constants.Color.labelTextColor
         myFirstQuizLabel.font = Constants.Font.labelFont
         myFirstQuizLabel.textAlignment = .center
-        
-//        myFirstQuizLabel.setHeight(Constants.MyFirstQuizLabel.height)
-//        myFirstQuizLabel.setWidth(Constants.MyFirstQuizLabel.width)
-        myFirstQuizLabel.centre(in: blueBackgroundItemView)
         myFirstQuizLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            myFirstQuizLabel.topAnchor.constraint(
-                equalTo: blueBackgroundItemView.topAnchor,
-                constant: Constants.MyFirstQuizLabel.topPadding
-            )
-//            myFirstQuizLabel.bottomAnchor.constraint(
-//                equalTo: mainIllustrationItemView.topAnchor,
-//                constant: -Constants.MyFirstQuizLabel.bottomPadding
-//            )
+            myFirstQuizLabel.centerXAnchor.constraint(equalTo: blueBackgroundItemView.centerXAnchor),
         ])
     }
 }
@@ -103,6 +84,8 @@ private extension MyFirstQuizView {
             static let bottomPadding = 23.0
             static let height = 229.0
             static let width = 229.0
+            static let heightMultiplier = 0.6
+            static let aspectRatio = 1.0
         }
         enum MyFirstQuizLabel {
             static let topPadding = 121.0

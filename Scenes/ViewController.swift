@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     //MARK: - Methods
     private func setUpMyFirstQuizView() {
         view.addSubview(myFirstQuizView)
-        
+                
         NSLayoutConstraint.activate([
             myFirstQuizView.topAnchor.constraint(
                 equalTo: view.topAnchor,
@@ -35,8 +35,12 @@ class ViewController: UIViewController {
             ),
             myFirstQuizView.trailingAnchor.constraint(
                 equalTo: view.trailingAnchor
-            )
+            ),
+            myFirstQuizView.heightAnchor.constraint(
+                equalTo: view.heightAnchor,
+                multiplier: Constants.MyFirstQuizView.heightMultiplier)
         ])
+        
         myFirstQuizView.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -64,17 +68,12 @@ class ViewController: UIViewController {
                 equalTo: typingView.bottomAnchor,
                 constant: Constants.StartQuizButton.topPadding
             ),
-//            startQuizButtonView.bottomAnchor.constraint(
-//                equalTo: view.bottomAnchor,
-//                constant: -Constants.StartQuizButton.bottomPadding
-//            ),
             startQuizButtonView.leadingAnchor.constraint(
                 equalTo: view.leadingAnchor,
                 constant: Constants.StartQuizButton.leftPadding
             )
         ])
         startQuizButtonView.translatesAutoresizingMaskIntoConstraints = false
-
     }
 }
 
@@ -84,6 +83,7 @@ extension ViewController {
         enum MyFirstQuizView {
             static let topPadding = 44.0
             static let bottomPadding = -389.0
+            static let heightMultiplier = 0.5
         }
         enum TypingView {
             static let topPadding = 92.0
