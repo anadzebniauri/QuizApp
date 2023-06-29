@@ -25,23 +25,36 @@ class StartQuizButtonView: UIView {
     //MARK: - Methods
     private func setUp() {
         setUpStartQuizButton()
+        setUpButtonTitle()
     }
     
     private func setUpStartQuizButton() {
         addSubview(startQuizButton)
         startQuizButton.stretchOnParent()
         
-        startQuizButton.setTitle(Constants.StartQuizButton.buttonText, for: .normal)
-        startQuizButton.titleLabel?.textColor = .white
-        startQuizButton.titleLabel?.textAlignment = .center
-        startQuizButton.titleLabel?.font = Constants.Font.buttonTextFont
-        
         startQuizButton.setHeight(Constants.StartQuizButton.height)
         startQuizButton.setWidth(Constants.StartQuizButton.width)
         startQuizButton.translatesAutoresizingMaskIntoConstraints = false
-        startQuizButton.layer.cornerRadius = Constants.StartQuizButton.radius
         
         startQuizButton.backgroundColor = Constants.Color.buttonColor
+        startQuizButton.layer.cornerRadius = Constants.StartQuizButton.radius
+    }
+    
+    private func setUpButtonTitle() {
+        let title = Constants.StartQuizButton.buttonText
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        paragraphStyle.tailIndent = 97
+        paragraphStyle.maximumLineHeight = 16
+        startQuizButton.titleLabel?.font = Constants.Font.buttonTextFont
+
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.white,
+            .paragraphStyle: paragraphStyle
+        ]
+        
+        let attributedTitle = NSAttributedString(string: title, attributes: attributes)
+        startQuizButton.setAttributedTitle(attributedTitle, for: .normal)
     }
 }
 
@@ -59,7 +72,7 @@ extension StartQuizButtonView {
             static let buttonColor = UIColor(red: 255, green: 196, blue: 74, alpha: 1)
         }
         enum Font {
-            static let buttonTextFont = UIFont(name: "systemFont-Bold", size: 12)
+            static let buttonTextFont = UIFont(name: "Georgia-Bold", size: 12)
         }
     }
 }

@@ -27,8 +27,8 @@ class MyFirstQuizView: UIView {
     //MARK: - Methods
     private func setUp() {
         setUpBlueBackgroundItemView()
-        setUpMainIllustrationItemView()
         setUpMyFirstQuizLabel()
+        setUpMainIllustrationItemView()
     }
     
     private func setUpBlueBackgroundItemView() {
@@ -53,13 +53,13 @@ class MyFirstQuizView: UIView {
         
         NSLayoutConstraint.activate([
             mainIllustrationItemView.topAnchor.constraint(
-                equalTo: blueBackgroundItemView.topAnchor,
+                equalTo: myFirstQuizLabel.bottomAnchor,
                 constant: Constants.MainIllustrationItemView.topPadding
             ),
-            mainIllustrationItemView.bottomAnchor.constraint(
-                equalTo: blueBackgroundItemView.bottomAnchor,
-                constant: -Constants.MainIllustrationItemView.bottomPadding
-            )
+//            mainIllustrationItemView.bottomAnchor.constraint(
+//                equalTo: blueBackgroundItemView.bottomAnchor,
+//                constant: -Constants.MainIllustrationItemView.bottomPadding
+//            )
         ])
     }
     
@@ -79,11 +79,11 @@ class MyFirstQuizView: UIView {
             myFirstQuizLabel.topAnchor.constraint(
                 equalTo: blueBackgroundItemView.topAnchor,
                 constant: Constants.MyFirstQuizLabel.topPadding
-            ),
-            myFirstQuizLabel.bottomAnchor.constraint(
-                equalTo: mainIllustrationItemView.topAnchor,
-                constant: -Constants.MyFirstQuizLabel.bottomPadding
             )
+//            myFirstQuizLabel.bottomAnchor.constraint(
+//                equalTo: mainIllustrationItemView.topAnchor,
+//                constant: -Constants.MyFirstQuizLabel.bottomPadding
+//            )
         ])
     }
 }
@@ -97,7 +97,7 @@ private extension MyFirstQuizView {
             static let width = 375.0
         }
         enum MainIllustrationItemView {
-            static let topPadding = 181.0
+            static let topPadding = 34.0
             static let leftPadding = 73.0
             static let rightPadding = 73.0
             static let bottomPadding = 23.0
@@ -120,7 +120,8 @@ private extension MyFirstQuizView {
             static let labelTextColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1)
         }
         enum Font {
-            static let labelFont = UIFont(name: "systemFont-Bold", size: 20)
+            static let labelFont = UIFont(name: "Georgia-Bold", size: 20)
         }
     }
 }
+

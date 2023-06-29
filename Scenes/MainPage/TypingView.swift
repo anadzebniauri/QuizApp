@@ -25,6 +25,7 @@ class TypingView: UIView {
     //MARK: - Methods
     private func setUp() {
         setUpTypingField()
+        setUpTypingFieldSpaces()
         setUpPlaceholder()
     }
     
@@ -33,16 +34,40 @@ class TypingView: UIView {
         typingFiled.stretchOnParent()
         typingFiled.layer.borderColor = Constants.Color.borderColor
         typingFiled.layer.borderWidth = Constants.TypingField.borderWidth
+        typingFiled.layer.cornerRadius = Constants.TypingField.radius
+        typingFiled.textAlignment = .center
+        typingFiled.font = Constants.Font.text
         
         typingFiled.setHeight(Constants.TypingField.height)
         typingFiled.setWidth(Constants.TypingField.width)
-        typingFiled.layer.cornerRadius = Constants.TypingField.radius
         typingFiled.translatesAutoresizingMaskIntoConstraints = false
+    }
+
+    private func setUpTypingFieldSpaces() {
+        typingFiled.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 34.5, height: 16))
+        typingFiled.leftViewMode = .always
+        typingFiled.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 34.5, height: 16))
+        typingFiled.rightViewMode = .always
     }
     
     private func setUpPlaceholder() {
-        typingFiled.placeholder = Constants.Placeholder.text
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        paragraphStyle.tailIndent = 199
+        paragraphStyle.maximumLineHeight = 16
+
+        let attributes: [NSAttributedString.Key: Any] = [
+            .paragraphStyle: paragraphStyle
+        ]
+        let attributedPlaceholder = NSAttributedString(
+            string: Constants.Placeholder.text,
+            attributes: attributes
+        )
+
+        typingFiled.attributedPlaceholder = attributedPlaceholder
     }
+
 }
 
 //MARK: - Constants
@@ -58,6 +83,9 @@ extension TypingView {
             static let height = 199.0
             static let width = 16.0
             static let text = "შეიყვანე სახელი"
+        }
+        enum Font {
+            static let text = UIFont(name: "Georgia", size: 12)
         }
         enum Color {
             static let borderColor = UIColor(red: 255, green: 196, blue: 74, alpha: 1).cgColor

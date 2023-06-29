@@ -35,7 +35,7 @@ class ViewController: UIViewController {
             ),
             myFirstQuizView.trailingAnchor.constraint(
                 equalTo: view.trailingAnchor
-            ),
+            )
         ])
         myFirstQuizView.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -64,10 +64,10 @@ class ViewController: UIViewController {
                 equalTo: typingView.bottomAnchor,
                 constant: Constants.StartQuizButton.topPadding
             ),
-            startQuizButtonView.bottomAnchor.constraint(
-                equalTo: view.bottomAnchor,
-                constant: -Constants.StartQuizButton.bottomPadding
-            ),
+//            startQuizButtonView.bottomAnchor.constraint(
+//                equalTo: view.bottomAnchor,
+//                constant: -Constants.StartQuizButton.bottomPadding
+//            ),
             startQuizButtonView.leadingAnchor.constraint(
                 equalTo: view.leadingAnchor,
                 constant: Constants.StartQuizButton.leftPadding
