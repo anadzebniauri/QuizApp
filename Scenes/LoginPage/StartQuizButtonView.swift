@@ -38,6 +38,12 @@ class StartQuizButtonView: UIView {
         
         startQuizButton.backgroundColor = Constants.Color.buttonColor
         startQuizButton.layer.cornerRadius = Constants.StartQuizButton.radius
+        startQuizButton.addTarget(self,
+                         action: #selector(startQuizButtonDidTap),
+                         for: .touchUpInside)
+    }
+    
+    @objc func startQuizButtonDidTap() {
     }
     
     private func setUpButtonTitle() {

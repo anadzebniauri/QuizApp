@@ -72,27 +72,13 @@ class MyFirstQuizView: UIView {
 //MARK: - Constants
 private extension MyFirstQuizView {
     enum Constants {
-        enum BlueBackgroundItemView {
-            static let topPadding = 44.0
-            static let height = 433.0
-            static let width = 375.0
-        }
         enum MainIllustrationItemView {
             static let topPadding = 34.0
-            static let leftPadding = 73.0
-            static let rightPadding = 73.0
             static let bottomPadding = 23.0
-            static let height = 229.0
-            static let width = 229.0
             static let heightMultiplier = 0.6
             static let aspectRatio = 1.0
         }
         enum MyFirstQuizLabel {
-            static let topPadding = 121.0
-            static let leftPadding = 88.0
-            static let bottomPadding = 34.0
-            static let height = 26.0
-            static let width = 198.0
             static let text = "ჩემი პირველი ქვიზი"
         }
         enum Image {
