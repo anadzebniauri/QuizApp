@@ -26,6 +26,7 @@ class StartQuizButtonView: UIView {
     private func setUp() {
         setUpStartQuizButton()
         setUpButtonTitle()
+        startQuizButtonDidTap()
     }
     
     private func setUpStartQuizButton() {
@@ -38,6 +39,7 @@ class StartQuizButtonView: UIView {
         
         startQuizButton.backgroundColor = Constants.Color.buttonColor
         startQuizButton.layer.cornerRadius = Constants.StartQuizButton.radius
+        
         startQuizButton.addTarget(self,
                          action: #selector(startQuizButtonDidTap),
                          for: .touchUpInside)
@@ -65,7 +67,6 @@ class StartQuizButtonView: UIView {
 }
 
 //MARK: - Constants
-
 extension StartQuizButtonView {
     enum Constants {
         enum StartQuizButton {

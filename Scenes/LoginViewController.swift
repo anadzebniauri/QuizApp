@@ -22,24 +22,6 @@ class LoginViewController: UIViewController {
         registerKeyboardNotifications()
     }
     
-    // MARK: View Will Appear
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        UIDevice.current.setValue(
-            UIInterfaceOrientation.portrait.rawValue,
-            forKey: "orientation"
-        )
-    }
-    
-    // MARK: View Will Disappear
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        UIDevice.current.setValue(
-            UIInterfaceOrientation.portrait.rawValue,
-            forKey: "orientation"
-        )
-    }
-    
     //MARK: - Set Up
     private func setUp() {
         setUpScrollView()
@@ -62,17 +44,17 @@ class LoginViewController: UIViewController {
                 
         NSLayoutConstraint.activate([
             myFirstQuizView.topAnchor.constraint(
-                equalTo: scrollView.topAnchor,
+                equalTo: view.topAnchor,
                 constant: Constants.MyFirstQuizView.topPadding
             ),
             myFirstQuizView.leadingAnchor.constraint(
-                equalTo: scrollView.leadingAnchor
+                equalTo: view.leadingAnchor
             ),
             myFirstQuizView.trailingAnchor.constraint(
-                equalTo: scrollView.trailingAnchor
+                equalTo: view.trailingAnchor
             ),
             myFirstQuizView.heightAnchor.constraint(
-                equalTo: scrollView.heightAnchor,
+                equalTo: view.heightAnchor,
                 multiplier: Constants.MyFirstQuizView.heightMultiplier)
         ])
         
@@ -89,7 +71,7 @@ class LoginViewController: UIViewController {
                 constant: Constants.TypingView.topPadding
             ),
             typingView.leadingAnchor.constraint(
-                equalTo: scrollView.leadingAnchor,
+                equalTo: view.leadingAnchor,
                 constant: Constants.TypingView.leftPadding
             )
         ])
@@ -106,7 +88,7 @@ class LoginViewController: UIViewController {
                 constant: Constants.StartQuizButton.topPadding
             ),
             startQuizButtonView.leadingAnchor.constraint(
-                equalTo: scrollView.leadingAnchor,
+                equalTo: view.leadingAnchor,
                 constant: Constants.StartQuizButton.leftPadding
             )
         ])

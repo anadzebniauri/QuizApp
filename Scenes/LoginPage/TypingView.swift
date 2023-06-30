@@ -51,7 +51,6 @@ class TypingView: UIView {
     }
     
     private func setUpPlaceholder() {
-        
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .center
         paragraphStyle.tailIndent = 199
