@@ -23,6 +23,7 @@ class LoginViewController: UIViewController {
     
     //MARK: - Set Up
     private func setUp() {
+        view.backgroundColor = .white
         setUpScrollView()
         setUpMyFirstQuizView()
         setUpTypingView()

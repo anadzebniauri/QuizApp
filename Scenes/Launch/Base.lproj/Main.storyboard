@@ -42,21 +42,6 @@
             </objects>
             <point key="canvasLocation" x="125.95419847328243" y="3.5211267605633805"/>
         </scene>
-        <!--Home View Controller-->
-        <scene sceneID="Ybp-Nc-IAb">
-            <objects>
-                <viewController id="h82-IM-n5Z" customClass="HomeViewController" customModule="QuizApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="NYS-sm-Kf6">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="aiD-Xa-M4q"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yp5-9b-3eU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1938" y="4"/>
-        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">

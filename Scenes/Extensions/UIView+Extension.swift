@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIView {
-    private func stretch(on parentView: UIView) {
+    func stretch(on parentView: UIView) {
         NSLayoutConstraint.activate([
             topAnchor.constraint(equalTo: parentView.topAnchor),
             bottomAnchor.constraint(equalTo: parentView.bottomAnchor),
