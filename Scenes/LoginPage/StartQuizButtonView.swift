@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol StartQuizButtonViewDelegate: AnyObject {
+    func startQuizButtonDidTap()
+}
+
 class StartQuizButtonView: UIView {
+    
+    weak var delegate: StartQuizButtonViewDelegate?
     
     //MARK: - Properties
     private let startQuizButton = UIButton()
@@ -45,7 +51,8 @@ class StartQuizButtonView: UIView {
                          for: .touchUpInside)
     }
     
-    @objc func startQuizButtonDidTap() {
+    @objc private func startQuizButtonDidTap() {
+        delegate?.startQuizButtonDidTap()
     }
     
     private func setUpButtonTitle() {

@@ -14,12 +14,11 @@ class LoginViewController: UIViewController {
     private let myFirstQuizView = MyFirstQuizView()
     private let typingView = TypingView()
     private let startQuizButtonView = StartQuizButtonView()
-
+    
     //MARK: - View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
-        registerKeyboardNotifications()
     }
     
     //MARK: - Set Up
@@ -28,6 +27,7 @@ class LoginViewController: UIViewController {
         setUpMyFirstQuizView()
         setUpTypingView()
         setUpStartQuizButtonView()
+        registerKeyboardNotifications()
     }
     
     //MARK: - Scroll View
@@ -41,7 +41,7 @@ class LoginViewController: UIViewController {
     //MARK: - My First Quiz View
     private func setUpMyFirstQuizView() {
         scrollView.addSubview(myFirstQuizView)
-                
+        
         NSLayoutConstraint.activate([
             myFirstQuizView.topAnchor.constraint(
                 equalTo: view.topAnchor,
@@ -60,7 +60,7 @@ class LoginViewController: UIViewController {
         
         myFirstQuizView.translatesAutoresizingMaskIntoConstraints = false
     }
-   
+    
     //MARK: - Typing View
     private func setUpTypingView() {
         scrollView.addSubview(typingView)
@@ -81,6 +81,7 @@ class LoginViewController: UIViewController {
     //MARK: - Start Quiz Button View
     private func setUpStartQuizButtonView() {
         scrollView.addSubview(startQuizButtonView)
+        startQuizButtonView.delegate = self
         
         NSLayoutConstraint.activate([
             startQuizButtonView.topAnchor.constraint(
@@ -96,7 +97,7 @@ class LoginViewController: UIViewController {
     }
 }
 
-//MARK: - Scroll on Keyboard
+//MARK: - scroll when keyboard appears
 private extension LoginViewController {
     
     private func registerKeyboardNotifications() {
@@ -115,7 +116,7 @@ private extension LoginViewController {
             object: nil
         )
     }
-
+    
     private func hideKeyboardWhenTappedOnView() {
         let tap = UITapGestureRecognizer(
             target: self,
@@ -148,6 +149,14 @@ private extension LoginViewController {
         if view.frame.origin.y != 0 {
             view.frame.origin.y = 0
         }
+    }
+}
+
+//MARK: - Delegate
+extension LoginViewController: StartQuizButtonViewDelegate {
+    func startQuizButtonDidTap() {
+        let homeViewController = HomeViewController()
+        navigationController?.setViewControllers([homeViewController], animated: true)
     }
 }
 
