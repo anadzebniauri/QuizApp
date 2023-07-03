@@ -55,6 +55,7 @@ class HomeViewController: UIViewController {
         setUpGpaView()
         setUpDividerView()
         setUpLogOutButton()
+        setUpBackButton()
     }
     
     //MARK: - Methods
@@ -91,6 +92,14 @@ class HomeViewController: UIViewController {
             )
         ])
         GpaView.translatesAutoresizingMaskIntoConstraints = false
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(GPAViewTap))
+        GpaView.addGestureRecognizer(tapGestureRecognizer)
+        GpaView.isUserInteractionEnabled = true
+    }
+    
+    @objc private func GPAViewTap() {
+        let detailsViewController = DetailsViewController()
+        navigationController?.pushViewController(detailsViewController, animated: true)
     }
     
     private func setUpDividerView() {
@@ -128,7 +137,15 @@ class HomeViewController: UIViewController {
         let loginViewController = LoginViewController()
         navigationController?.setViewControllers([loginViewController], animated: true)
     }
+    
+    private func setUpBackButton() {
+        let backButtonImage = Constants.Image.backButton
+        self.navigationController?.navigationBar.backIndicatorImage = backButtonImage
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = backButtonImage
+        self.navigationController?.navigationBar.backItem?.title = .none
+    }
 }
+
 
 //MARK: - Constants
 private extension HomeViewController {
@@ -156,6 +173,7 @@ private extension HomeViewController {
         }
         enum Image {
             static let button = UIImage(named: "logOut")
+            static let backButton = UIImage(named: "backButton")
         }
         enum Color {
             static let yellow = UIColor(red: 255, green: 196, blue: 74, alpha: 1)

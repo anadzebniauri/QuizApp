@@ -8,7 +8,7 @@
 import UIKit
 
 class GPAView: UIView {
-    
+        
     //MARK: - Properties
     private let gpaLabel: UILabel = {
         let gpaLabel = UILabel()
@@ -28,7 +28,6 @@ class GPAView: UIView {
         gpaTextLabel.textColor = .white
         gpaTextLabel.font = Constants.Font.gpaText
         gpaTextLabel.textAlignment = .center
-        gpaTextLabel.setHeight(Constants.GPAText.height)
         gpaTextLabel.translatesAutoresizingMaskIntoConstraints = false
         return gpaTextLabel
     }()
@@ -40,37 +39,33 @@ class GPAView: UIView {
         gpaValueLabel.textAlignment = .center
         gpaValueLabel.textColor = Constants.Color.gpaYellow
         gpaValueLabel.font = Constants.Font.gpaValue
-        gpaValueLabel.setHeight(Constants.GPAValue.height)
         gpaValueLabel.translatesAutoresizingMaskIntoConstraints = false
         return gpaValueLabel
     }()
     
-    private let detailsLabel: UILabel = {
-        let detailsLabel = UILabel()
-        detailsLabel.text = Constants.DetailsButton.text
-        detailsLabel.backgroundColor = .clear
-        detailsLabel.textColor = .white
-        detailsLabel.font = Constants.Font.details
-        detailsLabel.textAlignment = .center
-        detailsLabel.setHeight(Constants.DetailsButton.textHeight)
-        detailsLabel.translatesAutoresizingMaskIntoConstraints = false
-        return detailsLabel
+    private let detailsLabelText: UILabel = {
+        let detailsLabelText = UILabel()
+        detailsLabelText.text = Constants.DetailsLabel.text
+        detailsLabelText.backgroundColor = .clear
+        detailsLabelText.textColor = .white
+        detailsLabelText.font = Constants.Font.details
+        detailsLabelText.textAlignment = .center
+        detailsLabelText.translatesAutoresizingMaskIntoConstraints = false
+        return detailsLabelText
     }()
     
     private let detailsImage: UIImageView = {
         let detailsImage = UIImageView()
         detailsImage.image = UIImage(named: "detailsIcon")
-        detailsImage.setHeight(Constants.DetailsButton.iconHeight)
         detailsImage.translatesAutoresizingMaskIntoConstraints = false
         return detailsImage
     }()
     
-    private let detailsButton: UIButton = {
-        let detailsButton = UIButton()
-        detailsButton.backgroundColor = .clear
-        detailsButton.setHeight(Constants.DetailsButton.height)
-        detailsButton.translatesAutoresizingMaskIntoConstraints = false
-        return detailsButton
+    private let detailsLabel: UILabel = {
+        let detailsLabel = UILabel()
+        detailsLabel.backgroundColor = .clear
+        detailsLabel.translatesAutoresizingMaskIntoConstraints = false
+        return detailsLabel
     }()
     
     private let gpaStackView = UIStackView()
@@ -91,7 +86,7 @@ class GPAView: UIView {
         setUpView()
         setUpGpaLabel()
         setUpGpaStackView()
-        setUpDetailsButton()
+        setUpDetailsLabel()
         setUpDetailsStackView()
     }
     
@@ -104,7 +99,7 @@ class GPAView: UIView {
     
     private func setUpGpaLabel() {
         addSubview(gpaLabel)
-        
+
         NSLayoutConstraint.activate([
             gpaLabel.topAnchor.constraint(
                 equalTo: topAnchor,
@@ -136,45 +131,39 @@ class GPAView: UIView {
         gpaStackView.layoutMargins = Constants.GPAStackView.layoutMargins
     }
     
-    private func setUpDetailsButton() {
-        addSubview(detailsButton)
+    private func setUpDetailsLabel() {
+        addSubview(detailsLabel)
         
         NSLayoutConstraint.activate([
-            detailsButton.topAnchor.constraint(
+            detailsLabel.topAnchor.constraint(
                 equalTo: topAnchor,
-                constant: Constants.DetailsButton.topPadding
+                constant: Constants.DetailsLabel.topPadding
             ),
-            detailsButton.trailingAnchor.constraint(
+            detailsLabel.trailingAnchor.constraint(
                 equalTo: trailingAnchor,
-                constant: Constants.DetailsButton.rightPadding
+                constant: Constants.DetailsLabel.rightPadding
             ),
-            detailsButton.bottomAnchor.constraint(
+            detailsLabel.bottomAnchor.constraint(
                 equalTo: bottomAnchor,
-                constant: Constants.DetailsButton.bottomPadding
+                constant: Constants.DetailsLabel.bottomPadding
             )
         ])
-        detailsButton.addTarget(self,
-                                action: #selector(detailsButtonDidTap),
-                                for: .touchUpInside)
-    }
-    
-    @objc private func detailsButtonDidTap() {
-        print("tap")
     }
     
     private func setUpDetailsStackView() {
         addSubview(detailsStackView)
-        detailsStackView.stretch(on: detailsButton)
-        detailsStackView.addArrangedSubview(detailsLabel)
+        detailsStackView.stretch(on: detailsLabel)
+        detailsStackView.addArrangedSubview(detailsLabelText)
         detailsStackView.addArrangedSubview(detailsImage)
         detailsStackView.translatesAutoresizingMaskIntoConstraints = false
         
-        detailsStackView.spacing = Constants.DetailsButton.spacing
+        detailsStackView.spacing = Constants.DetailsLabel.spacing
         detailsStackView.axis = .horizontal
         detailsStackView.alignment = .center
         detailsStackView.distribution = .fill
+        detailsStackView.isUserInteractionEnabled = true
         detailsStackView.isLayoutMarginsRelativeArrangement = true
-        detailsStackView.layoutMargins = Constants.DetailsButton.layoutMargins
+        detailsStackView.layoutMargins = Constants.DetailsLabel.layoutMargins
     }
 }
 
@@ -205,7 +194,7 @@ private extension GPAView {
             static let spacing = 4.0
             static let layoutMargins = UIEdgeInsets(top: 7, left: 10, bottom: 10, right: 7)
         }
-        enum DetailsButton {
+        enum DetailsLabel {
             static let text = "დეტალურად"
             static let textHeight = 18.0
             static let iconHeight = 10.0

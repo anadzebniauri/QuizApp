@@ -32,7 +32,6 @@ class StartQuizButtonView: UIView {
     private func setUp() {
         setUpStartQuizButton()
         setUpButtonTitle()
-        startQuizButtonDidTap()
     }
     
     private func setUpStartQuizButton() {
