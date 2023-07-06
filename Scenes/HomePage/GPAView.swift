@@ -217,7 +217,6 @@ private extension GPAView {
             static let details = UIFont(name: "Georgia", size: 12)
             static let gpaText = UIFont(name: "Georgia", size: 14)
             static let gpaValue = UIFont(name: "Georgia-Bold", size: 12)
-            
         }
     }
     

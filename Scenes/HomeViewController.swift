@@ -55,7 +55,6 @@ class HomeViewController: UIViewController {
         setUpGpaView()
         setUpDividerView()
         setUpLogOutButton()
-        setUpBackButton()
     }
     
     //MARK: - Methods
@@ -137,13 +136,6 @@ class HomeViewController: UIViewController {
         let loginViewController = LoginViewController()
         navigationController?.setViewControllers([loginViewController], animated: true)
     }
-    
-    private func setUpBackButton() {
-        let backButtonImage = Constants.Image.backButton
-        self.navigationController?.navigationBar.backIndicatorImage = backButtonImage
-        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = backButtonImage
-        self.navigationController?.navigationBar.backItem?.title = .none
-    }
 }
 
 
@@ -173,14 +165,13 @@ private extension HomeViewController {
         }
         enum Image {
             static let button = UIImage(named: "logOut")
-            static let backButton = UIImage(named: "backButton")
         }
         enum Color {
             static let yellow = UIColor(red: 255, green: 196, blue: 74, alpha: 1)
             static let divider = UIColor(red: 241, green: 241, blue: 241, alpha: 1)
         }
         enum Font {
-            static let textFont = UIFont(name: "Georgia-Bold", size: 16)
+            static let textFont = UIFont(name: "Georgia", size: 16)
         }
     }
 }
