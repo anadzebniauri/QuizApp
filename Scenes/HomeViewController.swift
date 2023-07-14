@@ -40,7 +40,30 @@ class HomeViewController: UIViewController {
         return dividerView
     }()
     
+    private let chooseSubjectLabel: UILabel = {
+        let chooseSubjectLabel = UILabel()
+        chooseSubjectLabel.text = Constants.ChooseSubjectLabel.text
+        chooseSubjectLabel.setHeight(Constants.ChooseSubjectLabel.height)
+        chooseSubjectLabel.translatesAutoresizingMaskIntoConstraints = false
+        return chooseSubjectLabel
+    }()
+    
+    private lazy var subjectTableView: UITableView = {
+        let subjectTableView = UITableView()
+        subjectTableView.delegate = self
+        subjectTableView.dataSource = self
+        subjectTableView.register(
+            SubjectTableViewCell.self,
+            forCellReuseIdentifier: Constants.SubjectTableView.cell
+        )
+        subjectTableView.separatorStyle = .none
+        subjectTableView.backgroundColor = .clear
+        subjectTableView.translatesAutoresizingMaskIntoConstraints = false
+        return subjectTableView
+    }()
+    
     private let GpaView = GPAView()
+
     
     //MARK: - View Did Load
     override func viewDidLoad() {
@@ -53,8 +76,10 @@ class HomeViewController: UIViewController {
     private func setup() {
         setUpGreetingLabel()
         setUpGpaView()
+        setUpChooseSubjectLabel()
         setUpDividerView()
         setUpLogOutButton()
+        setUpSubjectTableView()
     }
     
     //MARK: - Methods
@@ -101,6 +126,15 @@ class HomeViewController: UIViewController {
         navigationController?.pushViewController(detailsViewController, animated: true)
     }
     
+    private func setUpChooseSubjectLabel() {
+        view.addSubview(chooseSubjectLabel)
+        
+        NSLayoutConstraint.activate([
+            chooseSubjectLabel.topAnchor.constraint(equalTo: GpaView.bottomAnchor, constant: Constants.ChooseSubjectLabel.topPadding),
+            chooseSubjectLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.ChooseSubjectLabel.leftPadding)
+        ])
+    }
+    
     private func setUpDividerView() {
         view.addSubview(dividerView)
         
@@ -136,8 +170,44 @@ class HomeViewController: UIViewController {
         let loginViewController = LoginViewController()
         navigationController?.setViewControllers([loginViewController], animated: true)
     }
+    
+    private func setUpSubjectTableView() {
+        view.addSubview(subjectTableView)
+        
+        NSLayoutConstraint.activate([
+            subjectTableView.topAnchor.constraint(
+                equalTo: chooseSubjectLabel.bottomAnchor,
+                constant: Constants.SubjectTableView.topPadding
+            ),
+            subjectTableView.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: Constants.SubjectTableView.leftPadding
+            ),
+            subjectTableView.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: Constants.SubjectTableView.rightPadding
+            ),
+            subjectTableView.bottomAnchor.constraint(equalTo: dividerView.topAnchor)
+        ])
+    }
 }
 
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return Constants.SubjectTableView.rowHeight
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: Constants.SubjectTableView.cell,
+            for: indexPath) as! SubjectTableViewCell
+        return cell
+    }
+}
 
 //MARK: - Constants
 private extension HomeViewController {
@@ -152,6 +222,12 @@ private extension HomeViewController {
             static let leftPadding = 16.0
             static let rightPadding = -16.0
         }
+        enum ChooseSubjectLabel {
+            static let text = "აირჩიე საგანი"
+            static let height = 18.0
+            static let topPadding = 32.0
+            static let leftPadding = 16.0
+        }
         enum dividerView {
             static let bottomPadding = -65.0
             static let height = 1.0
@@ -162,6 +238,14 @@ private extension HomeViewController {
             static let cornerRadius = 42.0
             static let width = 42.0
             static let height = 42.0
+        }
+        enum SubjectTableView {
+            static let cell = "SubjectTableViewCell"
+            static let topPadding = 16.0
+            static let leftPadding = 16.0
+            static let rightPadding = -16.0
+            static let rowHeight = 126.0
+            
         }
         enum Image {
             static let button = UIImage(named: "logOut")
@@ -175,3 +259,23 @@ private extension HomeViewController {
         }
     }
 }
+
+//#if canImport(SwiftUI) && DEBUG
+//import SwiftUI
+//
+//struct ViewControllerRepresentable: UIViewControllerRepresentable {
+//
+//    func makeUIViewController(context: Context) -> some UIViewController {
+//        return UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()!
+//    }
+//
+//    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+//
+//    }
+//}
+//struct ViewController_Preview: PreviewProvider {
+//    static var previews: some View {
+//         ViewControllerRepresentable()
+//    }
+//}
+//#endif
